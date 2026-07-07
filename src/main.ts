@@ -1,8 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-
-// simple declaration to satisfy TypeScript when @types/node isn't installed
-declare const process: any;
+import { AppModule } from './app.module.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
