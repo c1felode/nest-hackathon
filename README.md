@@ -1,98 +1,163 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Nest Hackathon Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A secure, production-ready backend built with **NestJS 11** and **Express adapter**, featuring integrated rate-limiting and DDoS protection via Arcjet.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Overview
 
-## Description
+This project provides a foundational backend architecture for hackathon applications, demonstrating NestJS best practices including:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Modular architecture** with feature modules and global infrastructure services
+- **Security-first approach** with Arcjet rate-limiting and bot detection
+- **ES Modules support** with modern TypeScript (ES2023 target)
+- **Express integration** via `@nestjs/platform-express`
+- **Configuration management** via environment variables
 
-## Project setup
+## Tech Stack
 
-```bash
-$ npm install
+- **Runtime**: Node.js with ES Modules
+- **Framework**: NestJS 11.0+
+- **Adapter**: Express
+- **Language**: TypeScript 5.7+
+- **Security**: Arcjet 1.8+ (rate-limiting, bot detection, attack prevention)
+- **Testing**: Jest with ts-jest
+- **Code Quality**: ESLint + Prettier
+
+## Project Structure
+
+```
+src/
+├── app.controller.ts        # Main HTTP controller (root route)
+├── app.module.ts            # Root application module
+├── app.service.ts           # Root application service
+├── main.ts                  # Bootstrap entry point
+└── lib/
+    └── arcjet/              # Global security infrastructure
+        ├── arcjet.module.ts # Arcjet module (@Global)
+        └── arcjet.service.ts # Configuration factory
 ```
 
-## Compile and run the project
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ (with ES Modules support)
+- npm or yarn
+
+### Installation
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+### Environment Configuration
+
+Create a `.env` file in the project root:
+
+```env
+PORT=3000
+# Add Arcjet configuration variables as needed
+```
+
+### Development
 
 ```bash
-# unit tests
-$ npm run test
+# Watch mode
+npm run start:dev
 
-# e2e tests
-$ npm run test:e2e
+# Debug mode
+npm run start:debug
 
-# test coverage
-$ npm run test:cov
+# Production build
+npm run build
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Running
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Development
+npm start
+
+# Production
+npm run start:prod
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Scripts
 
-## Resources
+| Command | Purpose |
+|---------|---------|
+| `npm start` | Start the application |
+| `npm run start:dev` | Start with file watch |
+| `npm run start:debug` | Debug mode with watch |
+| `npm run start:prod` | Run compiled production build |
+| `npm run build` | Compile TypeScript to dist/ |
+| `npm run format` | Format code with Prettier |
+| `npm run lint` | Lint and fix with ESLint |
+| `npm test` | Run unit tests |
+| `npm run test:watch` | Tests in watch mode |
+| `npm run test:cov` | Generate coverage report |
+| `npm run test:e2e` | Run end-to-end tests |
 
-Check out a few resources that may come in handy when working with NestJS:
+## Architecture
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Global Modules
 
-## Support
+**ArcjetSecurityModule** (`src/lib/arcjet/`)
+- Marks as `@Global()` to be imported once in AppModule
+- Provides app-wide rate-limiting, bot detection, and DDoS protection
+- Configured via `ArcjetConfigService`
+- Applied as an APP_GUARD to all routes
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Feature Modules
 
-## Stay in touch
+Follow the pattern `src/modules/<feature-name>/` for new features:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+nest g module modules/auth
+nest g service modules/auth
+nest g controller modules/auth
+```
+
+## NestJS Best Practices Applied
+
+✅ **Constructor Injection Only** — No manual service instantiation  
+✅ **Global Infrastructure Modules** — Arcjet configured as @Global()  
+✅ **Separate Module/Service/Controller** — Generated via Nest CLI  
+✅ **Environment Configuration** — ConfigModule.forRoot() at module boundaries  
+✅ **ES Modules** — ESM imports with `.js` extensions  
+✅ **Compiled Output** — `dist/` directory for production
+
+## Testing
+
+Run the test suite:
+
+```bash
+npm test
+```
+
+Tests are located alongside source files with `.spec.ts` suffix. Configuration in `package.json` (unit tests) and `test/jest-e2e.json` (end-to-end tests).
+
+## Building for Production
+
+```bash
+npm run build
+npm run start:prod
+```
+
+The build outputs compiled JavaScript to `dist/`.
+
+## Contributing
+
+When adding new features:
+
+1. Create feature modules in `src/modules/`
+2. Use the Nest CLI for scaffolding
+3. Follow constructor injection patterns
+4. Add comprehensive tests
+5. Format and lint before committing:
+   ```bash
+   npm run format && npm run lint
+   ```
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+UNLICENSED
